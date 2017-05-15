@@ -11,8 +11,7 @@
         android:layout_height="match_parent"
         android:layout_centerVertical="true"
         android:layout_margin="5dp"
-        android:src="@drawable/ic_world_globe_dark"
-        android:background="#727272" />
+        android:src="@drawable/ic_world_globe_dark"/>
 
     <TextView
         android:id="@+id/tv_category"

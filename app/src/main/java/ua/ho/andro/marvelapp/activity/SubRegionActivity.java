@@ -35,7 +35,7 @@ public class SubRegionActivity extends BaseActivity {
         mTitle = (TextView) findViewById(R.id.toolbar_title);
         mTitle.setText(title.substring(0, 1).toUpperCase() + title.substring(1));
         navigationIcon = (ImageView)findViewById(R.id.iv_navigation_button);
-        navigationIcon.setImageResource(R.drawable.ic_world_globe_dark);
+        navigationIcon.setImageResource(R.drawable.ic_arrow_back_white);
         navigationIcon.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {

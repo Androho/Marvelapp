@@ -38,7 +38,7 @@ public class RegionActivity extends BaseActivity {
         mTitle.setText(title.substring(0, 1).toUpperCase() + title.substring(1));
         relativeLayout = (RelativeLayout) findViewById(R.id.rl_progress);
         navigationIcon = (ImageView)findViewById(R.id.iv_navigation_button);
-        navigationIcon.setImageResource(R.drawable.ic_world_globe_dark);
+        navigationIcon.setImageResource(R.drawable.ic_arrow_back_white);
         navigationIcon.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
