@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ua.ho.andro.marvelapp.activity.RegionsListActivity">
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/toolbar"/>
+
+    <TextView
+        android:id="@+id/tv_Dm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Device memory"
+        app:layout_constraintTop_toBottomOf="@+id/include"/>
+
+    <TextView
+        android:id="@+id/tv_free"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        android:text="Free"
+        app:layout_constraintRight_toLeftOf="@+id/tv_capacity"
+        app:layout_constraintTop_toBottomOf="@+id/include" />
+
+    <TextView
+        android:id="@+id/tv_capacity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        android:text="3.4"
+        android:textStyle="bold"
+        app:layout_constraintRight_toLeftOf="@+id/tv_Gb"
+        app:layout_constraintTop_toBottomOf="@+id/include" />
+
+    <TextView
+        android:id="@+id/tv_Gb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:layout_marginRight="5dp"
+        android:text="GB"
+        android:textStyle="bold"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:indeterminate="false"
+        android:max="100"
+        android:progress="20"
+        android:layout_margin="20dp"
+        app:layout_constraintTop_toTopOf="@+id/tv_Gb"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+
+    <TextView
+        android:id="@+id/tv_Wr"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:background="#eaeaea"
+        android:gravity="center"
+        android:text="World Regions"
+        app:layout_constraintTop_toBottomOf="@+id/progressBar"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <GridView
+        android:id="@+id/gv_regions_list"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        app:layout_constraintTop_toBottomOf="@+id/tv_Wr"/>
+
+</android.support.constraint.ConstraintLayout>
