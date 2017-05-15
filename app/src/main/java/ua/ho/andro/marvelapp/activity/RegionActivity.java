@@ -25,13 +25,13 @@ public class RegionActivity extends BaseActivity {
     private GridView gridView;
     private RegionAdapter regionAdapter;
     private RegionsList result;
-    private int position;
+    private int position, positions1;
     public RelativeLayout relativeLayout;
     private ImageView navigationIcon;
     public ProgressBar progressBar;
     public TextView downloadingRegion, capacityPercent;
     private DownloadTask downloadTask;
-
+    private String MAP_URL = "http://download.osmand.net/download.php?standard=yes&file=Denmark_europe_2.obf.zip";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +54,7 @@ public class RegionActivity extends BaseActivity {
         progressBar = (ProgressBar)findViewById(R.id.progress_bar);
         downloadingRegion=(TextView)findViewById(R.id.tv_downloading);
         capacityPercent=(TextView)findViewById(R.id.tv_capacity_percent);
-        downloadingRegion.setText("Downloading"+title.substring(0, 1).toUpperCase() + title.substring(1));
-        capacityPercent.setText("0");
+        downloadingRegion.setText("Downloading "+title.substring(0, 1).toUpperCase() + title.substring(1));
 
 
         if (10 == 0) {
@@ -73,15 +72,20 @@ public class RegionActivity extends BaseActivity {
             gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int positions, long id) {
+                    positions1=positions;
                     if (result.getRegion().get(position).getRegion().get(positions).getRegion() != null) {
                         Intent intent = new Intent(RegionActivity.this, SubRegionActivity.class);
                         intent.putExtra(BundleKeys.ELEMENTS, positions);
                         intent.putExtra(BundleKeys.ELEMENT,position);
                         startActivity(intent);
                         HolderData.init(result);
+
                     }else {
+                        String region =getRegionName().substring(0, 1).toUpperCase() + getRegionName().substring(1);
+                        String regions=getRegionsName();
+                        MAP_URL="http://download.osmand.net/download.php?standard=yes&file="+region+"_"+regions+"_2.obf.zip";
                         downloadTask = new DownloadTask(RegionActivity.this);
-                        downloadTask.execute();
+                        downloadTask.execute(MAP_URL);
                     }
                 }
             });
@@ -92,5 +96,16 @@ public class RegionActivity extends BaseActivity {
             this.finish();
         }
     }
-
+    @Override
+    protected void onStop() {
+        if (downloadTask!=null)
+        downloadTask.cancel(true);
+        super.onStop();
+    }
+    public String getRegionName() {
+        return result.getRegion().get(position).getRegion().get(positions1).getName();
+    }
+    public String getRegionsName() {
+        return result.getRegion().get(position).getName();
+    }
 }
