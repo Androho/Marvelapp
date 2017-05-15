@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +17,7 @@ import ua.ho.andro.marvelapp.Model.RegionsList;
 import ua.ho.andro.marvelapp.R;
 import ua.ho.andro.marvelapp.adapters.RegionAdapter;
 import ua.ho.andro.marvelapp.helper.BundleKeys;
+import ua.ho.andro.marvelapp.helper.DownloadTask;
 import ua.ho.andro.marvelapp.helper.HolderData;
 
 public class RegionActivity extends BaseActivity {
@@ -24,8 +26,12 @@ public class RegionActivity extends BaseActivity {
     private RegionAdapter regionAdapter;
     private RegionsList result;
     private int position;
-    private RelativeLayout relativeLayout;
+    public RelativeLayout relativeLayout;
     private ImageView navigationIcon;
+    public ProgressBar progressBar;
+    public TextView downloadingRegion, capacityPercent;
+    private DownloadTask downloadTask;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +51,12 @@ public class RegionActivity extends BaseActivity {
                 onBackPressed();
             }
         }));
+        progressBar = (ProgressBar)findViewById(R.id.progress_bar);
+        downloadingRegion=(TextView)findViewById(R.id.tv_downloading);
+        capacityPercent=(TextView)findViewById(R.id.tv_capacity_percent);
+        downloadingRegion.setText("Downloading"+title.substring(0, 1).toUpperCase() + title.substring(1));
+        capacityPercent.setText("0");
+
 
         if (10 == 0) {
             relativeLayout.setVisibility(View.VISIBLE);
@@ -68,9 +80,8 @@ public class RegionActivity extends BaseActivity {
                         startActivity(intent);
                         HolderData.init(result);
                     }else {
-                        Toast toast = Toast.makeText(getApplicationContext(),
-                                "<---", Toast.LENGTH_LONG);
-                        toast.show();
+                        downloadTask = new DownloadTask(RegionActivity.this);
+                        downloadTask.execute();
                     }
                 }
             });
@@ -81,4 +92,5 @@ public class RegionActivity extends BaseActivity {
             this.finish();
         }
     }
+
 }

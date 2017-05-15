@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
-            android:text="Downloading Berlin" />
+            android:text="Downloading" />
 
         <TextView
             android:id="@+id/tv_capacity_percent"
@@ -58,7 +58,7 @@
             android:layout_margin="20dp"
             android:indeterminate="false"
             android:max="100"
-            android:progress="20" />
+            android:progress="0" />
     </RelativeLayout>
 
 
