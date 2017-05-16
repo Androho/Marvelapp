@@ -31,7 +31,7 @@ public class RegionActivity extends BaseActivity {
     public ProgressBar progressBar;
     public TextView downloadingRegion, capacityPercent;
     private DownloadTask downloadTask;
-    private String MAP_URL = "http://download.osmand.net/download.php?standard=yes&file=Denmark_europe_2.obf.zip";
+    private String MAP_URL;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,10 +56,6 @@ public class RegionActivity extends BaseActivity {
         capacityPercent=(TextView)findViewById(R.id.tv_capacity_percent);
         downloadingRegion.setText("Downloading "+title.substring(0, 1).toUpperCase() + title.substring(1));
 
-
-        if (10 == 0) {
-            relativeLayout.setVisibility(View.VISIBLE);
-        }
         relativeLayout.setVisibility(View.GONE);
 
         gridView = (GridView) findViewById(R.id.gv_region_list);

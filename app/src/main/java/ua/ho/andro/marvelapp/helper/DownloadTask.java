@@ -5,7 +5,6 @@ import android.os.AsyncTask;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
-import android.widget.ProgressBar;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -22,8 +21,10 @@ public class DownloadTask extends AsyncTask<String, Integer, Drawable> {
     private RegionActivity regionActivity;
 
     public DownloadTask(RegionActivity regionActivity) {
-        this.regionActivity = regionActivity;
+        if (regionActivity == null)
+            this.regionActivity = regionActivity;
     }
+
 
     @Override
     protected void onPreExecute() {
